@@ -1,0 +1,5 @@
+{
+  "!elo": {
+    "response": "Elo: {faceit:profile:elo}, Region rank: #{faceit:profile:regionRank}, Country rank: #{faceit:profile:countryRank}"
+  }
+}
