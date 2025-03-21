@@ -1,10 +1,6 @@
 # Guide for my FACEIT application features
-This is a simple guide and reference for the features in my FACEIT application.
-
-<div style="border-left: 4px solid #E97451;padding-left: 10px;">
-  <p style="font-weight: 500;padding: 0;margin:0;color: #E97451;">Important!</p>
-  <p>The features here are <span style="font-weight: 500;color: #E97451;">purchase-based</span> and not implemented by default.</p>
-</div>
+> [!IMPORTANT]
+> The features here are <span style="font-weight: 500;color: #E97451;">purchase-based</span> and not implemented by default.
 
 ### Twitch Commands <code style="margin-left: 5px;color: #E97451;">twitch-commands.json</code>
 <a name="twitch-commands"></a>
@@ -42,12 +38,9 @@ and possible <code style="color: #E97451;">type</code> values:
 - <code style="color:rgb(233, 81, 170);">SEND_TWITCH_MESSAGE</code> - send a message in the Twitch chat as your configured user (if any, otherwise ignored).
 - <code style="color:rgb(233, 81, 170);">UPDATE_TWITCH_TITLE</code> - update the title on your stream as your configured user (if any, otherwise ignored).
 
-</br>
-<div style="border-left: 4px solid rgb(228, 44, 44);padding-left: 10px;">
-  <p style="font-weight: 500;padding: 0;margin:0;color: rgb(228, 44, 44);">Important!</p>
-  <p style="padding: 0;margin:0;">Don't re-define the event keys or else it will use the last one defined and ignore previous.</p>
-  <p>That said, each array is a list of triggers for every event.</p>
-</div>
+> [!IMPORTANT]
+> Don't re-define the event keys or else it will use the last one defined and ignore previous.  
+> That said, each array is a list of triggers for every event.
 
 Using the aforementioned information here as well, an outcome similar to this is inevitable:
 ```json
@@ -88,12 +81,10 @@ The inputs in these triggers allow the use of [<span style="color: #E97451 !impo
 ### Placeholders
 <a name="placeholders"></a>
 ***
-<div style="border-left: 4px solid rgb(37, 198, 230);padding-left: 10px;">
-  <p style="font-weight: 500;padding: 0;margin:0;color: rgb(37, 198, 230);">Replacements:</p>
-  <div></div>
-  <code>&amp;#44;</code> always gets replaced with <code>,</code> in placeholder parameters.
-  <p></p>
-</div>
+
+> [!IMPORTANT]
+> Replacements in any and all placeholder parameters:  
+> <code>&amp;#44;</code> always gets replaced with <code>,</code>.
 
 <p style="font-weight: 500;color: #E97451;">Player Profile</p>
 
@@ -128,7 +119,7 @@ The inputs in these triggers allow the use of [<span style="color: #E97451 !impo
   - <code>{faceit:seasonal(S):[R]:map}</code> - the map that the Elo was reached on.
   - <code>{faceit:seasonal(S):[R]:on}</code> - the date and time of when it was reached, formatted as [<span style="color: #E97451 !important;">ISO 8601</span>](https://sv.wikipedia.org/wiki/ISO_8601 "Wikipedia reference for the ISO 8601 standard") UTC.
 
-<p style="font-weight: 500;color: #E97451;">Extensive Statistics (<code style="color:rgb(210, 233, 81);">this</code> color means <span style="color: rgb(210, 233, 81);">optional</span>)</p>
+Extensive Statistics (***italic*** means OPTIONAL)
 
 - <p style="font-weight: 500;color:rgb(180, 94, 230);">Possible tags (<code style="color:rgb(233, 81, 187);">?</code> is one of <code style="color:rgb(233, 81, 187);">limit</code>, <code style="color:rgb(233, 81, 187);">dated</code> or <code style="color:rgb(233, 81, 187);">season</code> as shown below):</p>
 
@@ -157,32 +148,23 @@ The inputs in these triggers allow the use of [<span style="color: #E97451 !impo
 
 <div></div>
 
-- <code>{faceit:stats:limit(count,offset):*}</code> - statistics of N matches decided by the passed <code style="color: #E97451;">count</code> parameter (<code style="color: #E97451;">-1</code> equals to ALL matches). <code style="color: rgb(210, 233, 81)">offset</code> is the starting point of the matches, for example start from <code style="color: #E97451;">5</code> and then <code style="color: #E97451;">20</code> for <code style="color: #E97451;">count</code> would select the 20 matches **AFTER** the 5th.
+- <code>{faceit:stats:limit(count,offset):*}</code> - statistics of N matches decided by the passed <code style="color: #E97451;">count</code> parameter (<code style="color: #E97451;">-1</code> equals to ALL matches). ***offset*** is the starting point of the matches, for example start from <code style="color: #E97451;">5</code> and then <code style="color: #E97451;">20</code> for <code style="color: #E97451;">count</code> would select the 20 matches **AFTER** the 5th.
 
-- <code>{faceit:stats:dated(from,to,limit):*}</code> - statistics of matches between the date(s) passed, <code style="color: #E97451;">from</code> being the oldest date to start FROM, <code style="color:rgb(210, 233, 81);">to</code> being the newest date and then <code style="color:rgb(210, 233, 81);">limit</code> being the potential limitation of matches collected for statistical analysis. 
+- <code>{faceit:stats:dated(from,to,limit):*}</code> - statistics of matches between the date(s) passed, <code style="color: #E97451;">from</code> being the oldest date to start FROM, ***to*** being the newest date and then ***limit*** being the potential limitation of matches collected for statistical analysis. 
 
-  <div style="border-left: 4px solid #E97451;padding-left: 10px;">
-    <p style="font-weight: 500;padding: 0;margin:0;color: #E97451;">Important!</p>
-    <p>
-      Please note that the dates have to be either in unix milliseconds, valid date format, or a mix of <code style="color: #E97451;">date_here|+1d</code> or <code style="color: #E97451;">date_here|-1d</code> which adds/removes a day to/from the date specified, respectively. For mixed (addition and reduction) dates, the valid operators are <code style="color: #E97451;">+</code> and <code style="color: #E97451;">-</code>.
-      <div></div>
-      The possible time units are:
-      <div></div>
-      <code style="color: #E97451;">s</code> for seconds,
-      <code style="color: #E97451;">m</code> for minutes,
-      <code style="color: #E97451;">h</code> for hours,
-      <code style="color: #E97451;">d</code> for days,
-      <div></div>
-      <code style="color: #E97451;">w</code> for weeks,
-      <code style="color: #E97451;">y</code> for years and
-      <code style="color: #E97451;">mo</code> for months.
-    </p>
-    <p>
-      There are also helper definitions for dates:
-      <div></div>
-      <code style="color: #E97451;">MIDNIGHT</code> - this helper definition defines the date today as of midnight 00:00 UTC.
-    </p>
-  </div>
+  > Please note that the dates have to be either in unix milliseconds, valid date format, or a mix of <code style="color: #E97451;">date_here|+1d</code> or <code style="color: #E97451;">date_here|-1d</code> which adds/removes a day to/from the date specified, respectively. For mixed (addition and reduction) dates, the valid operators are <code style="color: #E97451;">+</code> and <code style="color: #E97451;">-</code>.  
+  >  
+  > The possible time units are:  
+  > <code style="color: #E97451;">s</code> for seconds,
+  > <code style="color: #E97451;">m</code> for minutes,
+  > <code style="color: #E97451;">h</code> for hours,
+  > <code style="color: #E97451;">d</code> for days,  
+  > <code style="color: #E97451;">w</code> for weeks,
+  > <code style="color: #E97451;">y</code> for years and
+  > <code style="color: #E97451;">mo</code> for months.
+  >  
+  > There are also helper definitions for dates:  
+  > <code style="color: #E97451;">MIDNIGHT</code> - this helper definition defines the date today as of midnight 00:00 UTC.
 
 - <code>{faceit:stats:season(S):*}</code> - statistics of a season where <code style="color: rgb(37, 198, 230);">S</code> is a season between <code style="color: rgb(37, 198, 230);">1-4</code>.
 
@@ -199,13 +181,12 @@ The inputs in these triggers allow the use of [<span style="color: #E97451 !impo
 ### Sample object using [<span style="color: #E97451 !important;">JSON</span>](https://en.wikipedia.org/wiki/JSON "Wikipedia page for JSON")
 <a name="json-sample"></a>
 ***
-<div style="border-left: 4px solid #E97451;padding-left: 10px;">
-  <p style="padding: 0;margin:0;"><span style="color:rgb(37, 198, 230);">value</span>: any literal from object to array, to boolean, null, number and strings.</p>
-  <p style="padding: 0;margin:0;"><span style="color:rgb(37, 198, 230);">object</span>: representation of a key-value pair (<code style="color: #E97451;">{}</code> are the delimiters).</p>
-  <p><span style="color:rgb(37, 198, 230);">array</span>: representation of a list containing zero, one or more values (<code style="color: #E97451;">[]</code> are the delimiters).</p>
-  <p style="padding: 0;margin:0;">Note that after each item in an object/array, there needs to be a comma to separate between the current and next value, as displayed below.</p>
-  <p><code style="color: #E97451;">sample string</code>, <code style="color: #E97451;">sample object</code> and <code style="color: #E97451;">a nested property</code> are all keys with their respective values, objects and/or arrays.</p>
-</div>
+> **value**: any literal from object to array, to boolean, null, number and strings.  
+> **object**: representation of a key-value pair (<code style="color: #E97451;">{}</code> are the delimiters).  
+> **array**: representation of a list containing zero, one or more values (<code style="color: #E97451;">[]</code> are the delimiters).  
+>  
+> Note that after each item in an object/array, there needs to be a comma to separate between the current and next value, as displayed below.  
+> *sample string*, *sample object* and *a nested property* are all keys with their respective values, objects and/or arrays.
 
 ```json
 // this is also an object (the top-level if you will; can also be changed to an array
